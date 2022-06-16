@@ -5,6 +5,7 @@ variable blacksmith_domain     {}  # url used for blacksmith domain
 variable route53_zone_id       {}  # Route53 zone id
 variable security_groups       {}  # Array of security groups to use
 variable system_acm_arn        {}  # ACM arn for the system certificates
+variable internal_lb           { default = true } # Determine whether the load balancer is internal-only facing
 
 variable enable_route_53       { default = 1 }  # Disable if using CloudFlare or other DNS
 
@@ -13,7 +14,7 @@ variable enable_route_53       { default = 1 }  # Disable if using CloudFlare or
 ################################################################################
 resource "aws_lb" "blacksmith_alb" {
   name               = "blacksmith-alb"
-  internal           = true
+  internal           = var.internal_lb
   load_balancer_type = "application"
   subnets            = var.subnet_ids
   security_groups    = var.security_groups
