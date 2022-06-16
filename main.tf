@@ -41,20 +41,20 @@ resource "aws_lb_target_group" "blacksmith_alb_tg" {
 }
 
 ################################################################################
-# Blacksmith ALB Target Group Attachment
+# Blacksmith ALB Target Group Attachment - Do this with vm_extension instead
 ################################################################################
 # Define bs instances using instance group, can use instance_tags or filter
-data "aws_instances" "blacksmith_instances" {
-  instance_tags = {
-    instance_group = "blacksmith"
-  }
-}
-resource "aws_lb_target_group_attachment" "blacksmith_alb_tga" {
-  count            = length(data.aws_instances.blacksmith_instances.ids)
-  target_id        = data.aws_instances.blacksmith_instances.ids[count.index]
-  target_group_arn = aws_lb_target_group.blacksmith_alb_tg.arn
-  port             = 443
-}
+#data "aws_instances" "blacksmith_instances" {
+#  instance_tags = {
+#    instance_group = "blacksmith"
+#  }
+#}
+#resource "aws_lb_target_group_attachment" "blacksmith_alb_tga" {
+#  count            = length(data.aws_instances.blacksmith_instances.ids)
+#  target_id        = data.aws_instances.blacksmith_instances.ids[count.index]
+#  target_group_arn = aws_lb_target_group.blacksmith_alb_tg.arn
+#  port             = 443
+#}
 
 ################################################################################
 # Blacksmith ALB Listeners - Blacksmith API - HTTPS
