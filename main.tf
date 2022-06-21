@@ -86,3 +86,4 @@ resource "aws_route53_record" "useast1_sz_np_bs_record" {
 }
 
 output "dns_name" {value = aws_lb.blacksmith_alb.dns_name}
+output "lb_name"  {value = aws_lb.blacksmith_alb.name }
