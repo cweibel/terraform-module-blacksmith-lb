@@ -85,5 +85,6 @@ resource "aws_route53_record" "useast1_sz_np_bs_record" {
   records = ["${aws_lb.blacksmith_alb.dns_name}"]
 }
 
-output "dns_name" {value = aws_lb.blacksmith_alb.dns_name}
-output "lb_name"  {value = aws_lb.blacksmith_alb.name }
+output "dns_name"             {value = aws_lb.blacksmith_alb.dns_name}
+output "lb_name"              {value = aws_lb.blacksmith_alb.name }
+output "lb_target_group_name" {value = aws_lb_target_group.blacksmith_alb_tg.name}
